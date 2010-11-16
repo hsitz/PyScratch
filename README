@@ -15,6 +15,10 @@ languages where Vim offers compile-in support, which include Python, Perl,
 Ruby, Lua, MZScheme (anything else?)  This plugin is specific to Python but it 
 should be relatively easy to extend to other supported languages.
 
+In general, this plugin makes Vim into an alternative to Python's
+IDLE.  It has advantages and disadvantages compared to IDLE, but it's possible that some
+people may prefer it to a tool like IDLE, at least for some uses.
+
 When the PyScratch plugin is loaded you can process Python commands and get 
 Python output in your Vim buffer in several different ways:
 
