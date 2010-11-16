@@ -1,4 +1,4 @@
-function! CRForPyI() 
+function! CRForPyI()
 	" call PyRun if user pressed <enter>
 	" on a line starting with '>>>' 
 	" (the single-line "prompt")
