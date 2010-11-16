@@ -1,6 +1,11 @@
 You can see a screencast demo of PyScratch here:
 http://vimeo.com/16871727
 
+NOTE:  You can get tab completion of your Python commands by using any of the 
+available methods of completion in Vim.  I've tried the pydiction 
+tab-completion plugin and recommend that anyone using PyScratch install pydiction 
+( http://www.vim.org/scripts/script.php?script_id=850 ) 
+
 The PyScratch plugin consists of a single vimscript file that a Vim user can
 install by placing it in their 'plugin' directory.
 
