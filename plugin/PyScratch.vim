@@ -1,3 +1,14 @@
+function! CRForPyI()
+	" call PyRun if user pressed <enter>
+	" on a line starting with '>>>' 
+	" (the single-line "prompt")
+	if getline(line('.')) =~ '^>>>'
+		call PyRun()
+	else
+		normal! i
+	endif
+	return ''
+endfunction
 function! CRForPy()
 	" call PyRun if user pressed <enter>
 	" on a line starting with '>>>' 
@@ -74,7 +85,7 @@ function! DoCommand()
 endfunction
 
 nmap <CR> :call CRForPy()<cr>
-imap <CR> <c-r>=CRForPy()<cr>
+imap <CR> <c-r>=CRForPyI()<cr>
 vmap <c-cr> :call VisualPyCommand()<cr>
 syn region PyErr start='^Error detected while' end='^\S\+Error:.*$'
 hi PyErr guifg=red
