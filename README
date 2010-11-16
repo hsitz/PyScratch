@@ -1,3 +1,6 @@
+You can see a screencast demo of PyScratch here:
+http://vimeo.com/16871727
+
 The PyScratch plugin consists of a single vimscript file that a Vim user can
 install by placing it in their 'plugin' directory.
 
