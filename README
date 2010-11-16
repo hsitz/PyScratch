@@ -1,0 +1,63 @@
+The PyScratch plugin consists of a single vimscript file that a Vim user can
+install by placing it in their 'plugin' directory.
+
+PyScratch requires a Vim executable compiled with Python support. It has been
+tested with Python26 but version should not matter.
+
+Over last few years several different plugins have been designed to send 
+commands in a Vim buffer out to a shell for processing (typically scripting the 
+'Gnu Screen utility), where the output can be viewed.  This works well, but for 
+languages where Vim has built-in support some people might prefer executing the 
+commands and getting output right in the Vim buffer.  All this takes is 
+redirecting the output from a supported language's command to the user's buffer 
+instead of to a message buffer.  This technique is possible only for the 
+languages where Vim offers compile-in support, which include Python, Perl, 
+Ruby, Lua, MZScheme (anything else?)  This plugin is specific to Python but it 
+should be relatively easy to extend to other supported languages.
+
+When the PyScratch plugin is loaded you can process Python commands and get 
+Python output in your Vim buffer in several different ways:
+
+(1)  Prepend a '>>>' user prompt as first characters in a line, then press 
+<enter>.  The command will be evaluated and results will be shown beginning in 
+the next line.  Commands that provide no output have the command itself 
+mirrored as output as confirmation that they have been processed.  You will 
+typically want to issue Python print commands, and these can be abbreviated 
+with 'p' instead of 'print'.  Some examples:
+
+>>> print 8 + 16
+24
+>>> p 8 + 16
+24
+>>> import sys
+( import sys )
+>>> for i in range(5): print i
+1
+2
+3
+4
+5
+>>> etc. etc.
+
+(2)  You can execute a block of lines at one time by visually selecting them 
+and pressing <ctrl_enter>.  The block should be a clean block of code with no 
+user prompt chars (i.e, '>>>') at left margin.  Output will be returned below 
+the block of lines.  Note that this method uses <ctrl-enter> rather than the 
+simple <enter> of the single-line-prompt method.
+
+(3)  It's not part of the plugin, but an entire file of Python can be executed 
+with the Vim command:   pyfile <filename>.  The plugin does not capture any 
+output from this command, however functions defined in the file can may then be 
+accessed in the Vim buffer using single-line-prompt Python commands or the 
+block-select Python processing.
+
+The plugin has a couple of lines defining a syntax region for error messages 
+and a highlight command that displays them in red.  This may be overwritten by 
+a syntax file that clears all syntax settings so if you want to use these you 
+may want to move the syntax and the highlight command to a syntax and color 
+file, respectively.
+
+This is just a Sunday afternoon hack and there are lots of little tweaks and 
+improvements that could be added.   I'd be happy to hear comments or 
+suggestions. . . 
+
