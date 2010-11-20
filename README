@@ -1,16 +1,30 @@
 You can see a screencast demo of PyScratch here:
 http://vimeo.com/16871727
 
+------------------------------------------------------
 NOTE:  You can get tab completion of your Python commands by using any of the 
 available methods of completion in Vim.  I've tried the pydiction 
 tab-completion plugin and recommend that anyone using PyScratch install pydiction 
 ( http://www.vim.org/scripts/script.php?script_id=850 ) 
+-----------------------------------------------------
+NOTE2:  Also works with RUBY, PERL, and LUA.
+The name PyScratch is now misleading, since code has been modified to work
+with Ruby, Perl, and/or Lua.  The global variable g:script_language can
+be set to 'python,'ruby','perl', or 'lua', and controls which interpreter
+is used to process '>>>' commands and code blocks.  Support for each
+interpreter must be compiled into your Vim.  Note also that usng Perl 
+is a little different from the other languages, because Vim does not
+support Perl's 'print' or 'say' commands.  Instead 'VIM::Msg' is used
+to specify printed output.   See :help perl for more.
+--------------------------------------------------
 
 The PyScratch plugin consists of a single vimscript file that a Vim user can
 install by placing it in their 'plugin' directory.
 
-PyScratch requires a Vim executable compiled with Python support. It has been
-tested with Python26 but version should not matter.
+PyScratch requires a Vim executable compiled with support for the 
+scripting language(s) that will be used. It has been
+tested with Python26, Ruby1.8, Perl 5.12, and Lua 5.1,
+but version should not matter.
 
 Over last few years several different plugins have been designed to send 
 commands in a Vim buffer out to a shell for processing (typically scripting the 
@@ -27,8 +41,8 @@ In general, this plugin makes Vim into an alternative to Python's
 IDLE.  It has advantages and disadvantages compared to IDLE, but it's possible that some
 people may prefer it to a tool like IDLE, at least for some uses.
 
-When the PyScratch plugin is loaded you can process Python commands and get 
-Python output in your Vim buffer in several different ways:
+When the PyScratch plugin is loaded you can process language commands and get 
+output in your Vim buffer in several different ways:
 
 (1)  Prepend a '>>>' user prompt as first characters in a line, then press 
 <enter>.  The command will be evaluated and results will be shown beginning in 

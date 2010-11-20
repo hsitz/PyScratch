@@ -1,3 +1,5 @@
+" language can be 'ruby', 'python', 'lua', or 'perl'
+let g:script_language='python'
 function! CRForPyI()
 	" call PyRun if user pressed <enter>
 	" on a line starting with '>>>' 
@@ -28,14 +30,19 @@ function! VisualPyCommand() range
 	let g:myvar = getline(g:first,g:last)
 	let myvar=''
 	redir =>> myvar
-	:silent! execute "python ".join(g:myvar,"\n")
+	:silent! execute g:script_language." ".join(g:myvar,"\n")
 	redir END
 	call append(g:last,'---Results---')
 	call append(g:last+1,myvar)
 	execute g:last+2
 	if getline(line('.')) =~ @a
 		silent execute '.s/^'.@a.'//e'
-		silent execute '.s/'.@a.'//ge'
+		if g:scr_lang != 'ruby'
+			silent execute '.s/'.@a.'//ge'
+		else
+			silent execute '.s/'.@a.@a.'//ge'
+			silent execute '.s/'.@a.'//ge'
+		endif
 	endif
 endfunction
 function! PyRun()
@@ -52,7 +59,10 @@ function! PyRun()
 	" was (hopefully) stored into @a in DoCommand()
 	if getline(line('.')) =~ @a
 		silent execute '.s/^'.@a.'//e'
-		silent execute '.s/'.@a.'//ge'
+		"if != 'ruby'
+		silent execute '.s/'.@a.@a.'//ge'
+		silent execute '.s/'.@a.'//ge'
+		"endif
 	endif
 	" try to do nice formatting when result has
 	" a lot of text
@@ -75,7 +85,7 @@ function! DoCommand()
 	" tweak: initial p gets expanded to full 'print'
 	let command = substitute(command,'^\s*[pP] ','print ','')
 	redir =>> g:result
-	silent! exec "python ".command
+	silent! exec g:script_language." ".command
 	redir END
 	let @a=g:result[0]
 	if g:result == ''
