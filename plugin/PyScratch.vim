@@ -35,9 +35,12 @@ function! VisualPyCommand() range
 	call append(g:last,'---Results---')
 	call append(g:last+1,myvar)
 	execute g:last+2
+	"normal V"ad
+	"call append(line('.'),split(@a,"\n"))
+
 	if getline(line('.')) =~ @a
 		silent execute '.s/^'.@a.'//e'
-		if g:scr_lang != 'ruby'
+		if g:script_language !~ 'ruby\|perl'
 			silent execute '.s/'.@a.'//ge'
 		else
 			silent execute '.s/'.@a.@a.'//ge'
